@@ -66,7 +66,7 @@ class Game:
 		mouse_x = mouse[0]/self.tile_size
 		mouse_y = mouse[1]/self.tile_size
 
-		mat = "W"
+		mat = 500
 
 		if keys[pygame.M_1]:
 			pts = [
@@ -76,10 +76,12 @@ class Game:
 				(mouse_x, mouse_y+1)
 			]
 			for pt in pts:
-				if self.env[pt][0] == 0:
-					self.env[pt] = ("D", 0)
-				else:
-					self.env[pt] = (mat, 0)
+				try:
+					if self.env[pt][0] == 0:
+						self.env[pt] = ("D", 0)
+					else:
+						self.env[pt] = (mat, 0)
+				except KeyError: pass
 
 		if keys[pygame.M_3]:
 			self.env[mouse_x, mouse_y] = (0, 0)
